@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.0
+Version: 1.1
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
@@ -247,9 +247,9 @@ function woocommerce_tablerate_rp() {
 								$i++;
 								echo '<tr class="table_rate">
 									<th class="check-column"><input type="checkbox" name="select" /></th>
-									<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['minO'] ) . '" name="' . esc_attr( $this->id .'_minO[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
-									<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['maxO'] ) . '" name="' . esc_attr( $this->id .'_maxO[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
-									<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['shippingO'] ) . '" name="' . esc_attr( $this->id .'_shippingO[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
+									<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['minO'] ) . '" name="' . esc_attr( $this->id .'_minO[' . $i . ']' ) . '" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
+									<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['maxO'] ) . '" name="' . esc_attr( $this->id .'_maxO[' . $i . ']' ) . '" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
+									<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['shippingO'] ) . '" name="' . esc_attr( $this->id .'_shippingO[' . $i . ']' ) . '" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
 								</tr>';
 							}
 						}
@@ -265,9 +265,9 @@ function woocommerce_tablerate_rp() {
 							var previous = size - 1;
 							jQuery('<tr class="table_rate">\
 								<th class="check-column"><input type="checkbox" name="select" /></th>\
-								<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_minO[' + size + ']" placeholder="0.00" size="4" /></td>\
-								<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_maxO[' + size + ']" placeholder="0.00" size="4" /></td>\
-								<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_shippingO[' + size + ']" placeholder="0.00" size="4" /></td>\
+								<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_minO[' + size + ']" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+								<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_maxO[' + size + ']" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+								<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_shippingO[' + size + ']" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
 							</tr>').appendTo('#<?php echo $this->id; ?>_table_rates table tbody');
 					
 							return false;
@@ -317,9 +317,9 @@ function woocommerce_tablerate_rp() {
 
 								echo '<tr class="int_table_rate">
 									<th class="check-column"><input type="checkbox" name="select" /></th>
-									<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['minO'] ) . '" name="' . esc_attr( $this->id_int .'_minO[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
-									<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['maxO'] ) . '" name="' . esc_attr( $this->id_int .'_maxO[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
-									<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['shippingO'] ) . '" name="' . esc_attr( $this->id_int .'_shippingO[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
+									<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['minO'] ) . '" name="' . esc_attr( $this->id_int .'_minO[' . $i . ']' ) . '" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
+									<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['maxO'] ) . '" name="' . esc_attr( $this->id_int .'_maxO[' . $i . ']' ) . '" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
+									<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['shippingO'] ) . '" name="' . esc_attr( $this->id_int .'_shippingO[' . $i . ']' ) . '" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', 'woocommerce' ).'" size="4" /></td>
 								</tr>';
 							}
 						}
@@ -336,9 +336,9 @@ function woocommerce_tablerate_rp() {
 
 							jQuery('<tr class="int_table_rate">\
 								<th class="check-column"><input type="checkbox" name="select" /></th>\
-								<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_minO[' + size + ']" placeholder="0.00" size="4" /></td>\
-								<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_maxO[' + size + ']" placeholder="0.00" size="4" /></td>\
-								<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_shippingO[' + size + ']" placeholder="0.00" size="4" /></td>\
+								<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_minO[' + size + ']" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+								<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_maxO[' + size + ']" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+								<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_shippingO[' + size + ']" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
 								</tr>').appendTo('#<?php echo $this->id_int; ?>_int_table_rates table tbody');
 
 								return false;
@@ -395,6 +395,14 @@ function woocommerce_tablerate_rp() {
 					$table_rate_maxO[$i] = number_format($table_rate_maxO[$i], 2,  '.', '');
 					$table_rate_shippingO[$i] = number_format($table_rate_shippingO[$i], 2,  '.', '');
 
+					if( $table_rate_minO[$i] > $table_rate_maxO[$i] ) {   // Swap Min and Max Values
+						$tempMin = $table_rate_minO[$i];
+						$table_rate_minO[$i] = $table_rate_maxO[$i];
+						$table_rate_maxO[$i] = $tempMin;
+					}
+
+
+
 					// Add to table rates array
 					$table_rates[ $i ] = array(
 						'minO'    => $table_rate_minO[ $i ],
@@ -404,6 +412,21 @@ function woocommerce_tablerate_rp() {
 				}
 			}
 
+			$orderby = "minO"; //change this to whatever key you want from the array
+
+			$sortArray = array();
+
+			foreach($table_rates as $the_rates){
+    			foreach($the_rates as $key=>$value){
+        			if(!isset($sortArray[$key])){
+            			$sortArray[$key] = array();
+        			}
+        			$sortArray[$key][] = $value;
+    			}
+			}
+
+			array_multisort($sortArray[$orderby],SORT_ASC,$table_rates);
+			
 			update_option( $this->table_rate_option, $table_rates );
 
 			$int_table_rate_minO  = array();
@@ -428,6 +451,12 @@ function woocommerce_tablerate_rp() {
 					$int_table_rate_maxO[$i] = number_format($int_table_rate_maxO[$i], 2,  '.', '');
 					$int_table_rate_shippingO[$i] = number_format($int_table_rate_shippingO[$i], 2,  '.', '');
 
+					if( $int_table_rate_minO[$i] > $int_table_rate_maxO[$i] ) {  // Swap Min and Max Values
+						$int_tempMin = $int_table_rate_minO[$i];
+						$int_table_rate_minO[$i] = $int_table_rate_maxO[$i];
+						$int_table_rate_maxO[$i] = $int_tempMin;
+					}
+
 					// Add to table rates array
 					$int_table_rates[ $i ] = array(
 						'minO'    => $int_table_rate_minO[ $i ],
@@ -437,7 +466,24 @@ function woocommerce_tablerate_rp() {
 				}
 			}
 
-			update_option( $this->int_table_rate_option, $int_table_rates );
+			$sortintArray = array();
+
+			foreach($int_table_rates as $the_rates){
+    			foreach($the_rates as $key=>$value){
+        			if(!isset($sortIntArray[$key])){
+            			$sortIntArray[$key] = array();
+        			}
+        			$sortIntArray[$key][] = $value;
+    			}
+			}
+
+			array_multisort($sortIntArray[$orderby],SORT_ASC,$int_table_rates);
+
+			if( $int_table_rate_minO[$i] <> $int_table_rate_maxO[$i] ) {
+				update_option( $this->int_table_rate_option, $int_table_rates );			
+ 
+			}
+			
 			$this->get_table_rates();
 		}
 

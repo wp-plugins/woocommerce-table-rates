@@ -1,9 +1,9 @@
 ==== Table Rates for WooCommerce ====
 Contributors: rpletcher
-Tags: woocommerce, fixed rates, shipping, International
+Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.0
+Stable tag: 1.1
 Donate link: ryanpletcher.com/donate/
 License: GPLv2 or later
 
@@ -33,8 +33,20 @@ None at this time
 
 == Changelog ==
 
+= 1.1 =
+* NEW: Sorts each table seperately in order of smallest to largest based off of minium cart total.
+
+* NEW: Swap Min and Max ammounts if the Max value is less than the Min Value.
+
+
 = 1.0 =
 * Initial Release
 
+== Future Plans ==
+
+
 == Screenshots ==
-None at this time
+1. What your customer will see -> screenshot-1.png
+2. Set the options of who can use your table rates -> screenshot-2.png
+3. Select the country that uses Domestic Rates and International -> screenshot-3.png
+4. Customize the rates that you offer -> screenshot-4.png
