@@ -7,7 +7,7 @@ Stable tag: 1.1
 Donate link: ryanpletcher.com/donate/
 License: GPLv2 or later
 
-Table Rates for WooCommerce allows you to setup a number of differnet price points for your store.
+Table Rates for WooCommerce allows you to setup a number of different price points for your store.
 
 == Description ==
 
@@ -32,12 +32,15 @@ None at this time.
 None at this time
 
 == Changelog ==
+= 1.1.1 =
+* FIX: Updated calculation of shipping to not include the any Virtual products.
+
+* FIX: Spelling Errors.
 
 = 1.1 =
 * NEW: Sorts each table seperately in order of smallest to largest based off of minium cart total.
 
 * NEW: Swap Min and Max ammounts if the Max value is less than the Min Value.
-
 
 = 1.0 =
 * Initial Release
