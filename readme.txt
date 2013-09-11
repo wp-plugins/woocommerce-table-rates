@@ -4,7 +4,7 @@ Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipp
 Requires at least: 3.0
 Tested up to: 3.6
 Stable tag: 1.1.1
-Donate link: ryanpletcher.com/donate/
+Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
 
 Table Rates for WooCommerce allows you to setup a number of different price points for your store.
