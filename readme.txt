@@ -32,6 +32,9 @@ None at this time.
 None at this time
 
 == Changelog ==
+= 1.1.2 =
+* FIX: Fixed issue that prevented the International table rates from updating.
+
 = 1.1.1 =
 * FIX: Updated calculation of shipping to not include the any Virtual products.
 

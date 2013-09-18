@@ -439,6 +439,10 @@ function woocommerce_tablerate_rp() {
 			
 			update_option( $this->table_rate_option, $table_rates );
 
+
+
+
+
 			$int_table_rate_minO  = array();
 			$int_table_rate_maxO  = array();
 			$int_table_rate_shippingO = array();
@@ -489,10 +493,8 @@ function woocommerce_tablerate_rp() {
 
 			array_multisort($sortIntArray[$orderby],SORT_ASC,$int_table_rates);
 
-			if( $int_table_rate_minO[$i] <> $int_table_rate_maxO[$i] ) {
-				update_option( $this->int_table_rate_option, $int_table_rates );			
- 
-			}
+			update_option( $this->int_table_rate_option, $int_table_rates );			
+
 			
 			$this->get_table_rates();
 		}
