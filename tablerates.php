@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.1.1
+Version: 1.1.2
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
