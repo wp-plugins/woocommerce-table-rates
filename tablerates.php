@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.1.3
+Version: 1.1.4
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
@@ -25,7 +25,7 @@ function woocommerce_tablerate_rp() {
 	}
   
 	add_filter('woocommerce_shipping_methods', 'add_table_rate_rp');
-  
+
 	class rp_tablerates extends WC_Shipping_Method {
   
 		/**
@@ -185,32 +185,25 @@ function woocommerce_tablerate_rp() {
 
 
 			$shipping_costs = 0;
-			$max_shipping = 0;
-			  
+
 			if( in_array($myCountry, $localCountry) || ( $this->get_option( 'international' ) == "no") ) {
-
 				foreach ( $shipping_rates as $rates ) {
-					if ( $price >= $rates[minO] && $price <= $rates[maxO] ) {
-						$shipping_costs = $rates[shippingO];
-						continue;
-					}
 
-					$max_shipping = $rates[shippingO];
+					$shipping_costs = $rates[shippingO];
+					if ( $price >= $rates[minO] && $price <= $rates[maxO] )
+						continue;
+
 				}
 			} else if( !in_array($myCountry, $localCountry)) {
 				foreach ( $int_shipping_rates as $int_rates ) { 
-					if ( $price >= $int_rates[minO] && $price <= $int_rates[maxO] ) {
-						$shipping_costs = $int_rates[shippingO];
-						continue;
-					}
 
-					$max_shipping = $int_rates[shippingO];
+					$shipping_costs = $int_rates[shippingO];
+					if ( $price >= $int_rates[minO] && $price <= $int_rates[maxO] ) 
+						continue;
+					
 				}
 			}
 
-			if( $shipping_costs == 0 )
-				$shipping_costs = $max_shipping;
-	      
 			$rate = array(
 				'id'        => $this->id,
 				'label'     => $this->title,
