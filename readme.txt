@@ -3,7 +3,7 @@ Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
 
@@ -25,13 +25,19 @@ If you have an interest in translating this plugin please let me know.
 6. Check the Enable/Disable Checkbox.
 7. Enter the settings that you would like you to use
 
-== Upgrade Notice ==
-None at this time.
+== Future Plans ==
+Working on adding addition languages (Swedish, Spanish and German)
 
 == Frequently Asked Questions ==
 None at this time
 
 == Changelog ==
+
+= 1.1.3 =
+* FIX: Made the highest shipping value entered show for orders over the highest value in the table.
+
+* FIX: Fixed issue with calling in_array() when calculating shipping.
+
 = 1.1.2 =
 * FIX: Fixed issue that prevented the International table rates from updating.
 
@@ -47,9 +53,6 @@ None at this time
 
 = 1.0 =
 * Initial Release
-
-== Future Plans ==
-
 
 == Screenshots ==
 1. What your customer will see -> screenshot-1.png
