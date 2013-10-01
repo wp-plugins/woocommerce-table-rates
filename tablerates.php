@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.1.4
+Version: 1.1.5
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
@@ -184,25 +184,30 @@ function woocommerce_tablerate_rp() {
 	                $price = $totalPrice - $virtualPrice; //Sets the Price that we will calculate the shipping
 
 
-			$shipping_costs = 0;
+			$shipping_costs = -1;
 
 			if( in_array($myCountry, $localCountry) || ( $this->get_option( 'international' ) == "no") ) {
 				foreach ( $shipping_rates as $rates ) {
 
-					$shipping_costs = $rates[shippingO];
+					$lastPrice = $rates[shippingO];
 					if ( $price >= $rates[minO] && $price <= $rates[maxO] )
+						$shipping_costs = $rates[shippingO];
 						continue;
 
 				}
 			} else if( !in_array($myCountry, $localCountry)) {
 				foreach ( $int_shipping_rates as $int_rates ) { 
 
-					$shipping_costs = $int_rates[shippingO];
+					$lastPrice = $int_rates[shippingO];
 					if ( $price >= $int_rates[minO] && $price <= $int_rates[maxO] ) 
+						$shipping_costs = $int_rates[shippingO];
 						continue;
 					
 				}
 			}
+
+			if($shipping_costs == -1)
+				$shipping_costs = $lastPrice;
 
 			$rate = array(
 				'id'        => $this->id,
