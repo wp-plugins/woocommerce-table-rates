@@ -33,8 +33,11 @@ None at this time
 
 == Changelog ==
 
-= 1.1.5 =
+= 1.1.6 =
 * FIX: Fixing issue when a local country is not set.
+
+= 1.1.5 =
+* FIX: Attempted fix in calculating the shipping again.  This time I think I have it.
 
 = 1.1.4 =
 * FIX: Another error in calculating the shipping was fixed.
