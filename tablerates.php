@@ -167,6 +167,10 @@ function woocommerce_tablerate_rp() {
 			$localCountry = array();
 			
 			$localCountry = $this->get_option( 'local_countries' ); // "US";
+
+			if( $localCountry == '' )
+				$localCountry[] = $woocommerce->countries->get_base_country();
+
 			$allCountry = $this->get_option( 'countries' );
 			$myCountry = $woocommerce->customer->get_shipping_country();
 
@@ -181,33 +185,27 @@ function woocommerce_tablerate_rp() {
 				if ( $item['data']->is_virtual() )
 					$virtualPrice += $item['line_total'];
 
-	                $price = $totalPrice - $virtualPrice; //Sets the Price that we will calculate the shipping
+			$price = $totalPrice - $virtualPrice; //Sets the Price that we will calculate the shipping
 
-
-			$shipping_costs = -1;
+			$shipping_costs = 0;
 
 			if( in_array($myCountry, $localCountry) || ( $this->get_option( 'international' ) == "no") ) {
 				foreach ( $shipping_rates as $rates ) {
 
-					$lastPrice = $rates[shippingO];
+					$shipping_costs = $rates[shippingO];
 					if ( $price >= $rates[minO] && $price <= $rates[maxO] )
-						$shipping_costs = $rates[shippingO];
-						continue;
+						break;
 
 				}
 			} else if( !in_array($myCountry, $localCountry)) {
 				foreach ( $int_shipping_rates as $int_rates ) { 
 
-					$lastPrice = $int_rates[shippingO];
+					$shipping_costs = $int_rates[shippingO];
 					if ( $price >= $int_rates[minO] && $price <= $int_rates[maxO] ) 
-						$shipping_costs = $int_rates[shippingO];
-						continue;
+						break;
 					
 				}
 			}
-
-			if($shipping_costs == -1)
-				$shipping_costs = $lastPrice;
 
 			$rate = array(
 				'id'        => $this->id,
