@@ -2,7 +2,7 @@
 Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
-Tested up to: 3.7
+Tested up to: 3.8
 Stable tag: 1.1.5
 Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
