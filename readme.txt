@@ -3,7 +3,7 @@ Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.1.5
+Stable tag: 1.1.7
 Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
 
@@ -32,6 +32,9 @@ Working on adding addition languages (Swedish, Spanish and German)
 None at this time
 
 == Changelog ==
+
+= 1.1.7 =
+* FIX: Fixing issue to check for the minimum value you can use for this shipping method
 
 = 1.1.6 =
 * FIX: Fixing issue when a local country is not set.

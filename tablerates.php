@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.1.6
+Version: 1.1.7
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
@@ -13,7 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 define( 'RPTR_CORE_TEXT_DOMAIN', 'rptr' );
 
-add_action('plugins_loaded', 'woocommerce_tablerate_rp', 0);
+
+add_action( 'plugins_loaded', 'woocommerce_tablerate_rp', 0);
+
 
 function woocommerce_tablerate_rp() {
 	if (!class_exists('WC_Shipping_Method'))
@@ -42,7 +44,7 @@ function woocommerce_tablerate_rp() {
 			$this->int_table_rate_option  = 'rp_wc_int_table_rates';
 			$this->method_description   = __( 'Table rates let you define a standard rate per item, or per order.', RPTR_CORE_TEXT_DOMAIN );
 
-			// add_action( 'init', array( $this, 'rptr_loaddomain', ) );
+			//add_action( 'init', array( $this, 'rptr_loaddomain', ) );
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_table_rates' ) );
 			add_filter( 'woocommerce_settings_api_sanitized_fields_' . $this->id, array( $this, 'save_default_costs' ) );
@@ -78,6 +80,8 @@ function woocommerce_tablerate_rp() {
 
 			// Load Table rates
 			$this->get_table_rates();
+
+				
 		}
 
 		/**
@@ -187,35 +191,43 @@ function woocommerce_tablerate_rp() {
 
 			$price = $totalPrice - $virtualPrice; //Sets the Price that we will calculate the shipping
 
-			$shipping_costs = 0;
-
+			$shipping_costs = -1;
+			$theFirst = 0;
+			
 			if( in_array($myCountry, $localCountry) || ( $this->get_option( 'international' ) == "no") ) {
 				foreach ( $shipping_rates as $rates ) {
+					if ( ($price < $rates['minO'])  && ($theFirst == 0)) {
+						$theFirst = 1;
+						break;
+					}
 
-					$shipping_costs = $rates[shippingO];
-					if ( $price >= $rates[minO] && $price <= $rates[maxO] )
+					$shipping_costs = $rates['shippingO'];
+					if ( $price >= $rates['minO'] && $price <= $rates['maxO'] )
 						break;
 
 				}
 			} else if( !in_array($myCountry, $localCountry)) {
 				foreach ( $int_shipping_rates as $int_rates ) { 
+					if ( $price < $int_rates[0] )
+						break;
 
-					$shipping_costs = $int_rates[shippingO];
-					if ( $price >= $int_rates[minO] && $price <= $int_rates[maxO] ) 
+					$shipping_costs = $int_rates['shippingO'];
+					if ( $price >= $int_rates['minO'] && $price <= $int_rates['maxO'] ) 
 						break;
 					
 				}
 			}
 
-			$rate = array(
-				'id'        => $this->id,
-				'label'     => $this->title,
-				'cost'      => $shipping_costs,
-				'calc_tax'  => 'per_order'
-			);
-	      
-			$this->add_rate( $rate );
-	      
+			if ( $shipping_costs <> -1 ) {
+				$rate = array(
+					'id'        => $this->id,
+					'label'     => $this->title,
+					'cost'      => $shipping_costs,
+					'calc_tax'  => 'per_order'
+				);
+		      
+				$this->add_rate( $rate );
+	      	}
 	    }
 	    
 	    /**
@@ -544,8 +556,7 @@ function woocommerce_tablerate_rp() {
 		 	*/
 			
 			public function rptr_loaddomain() {
-				$plugin_dir = basename(dirname(__FILE__));
-				load_plugin_textdomain(RPTR_CORE_TEXT_DOMAIN, false, $plugin_dir );
+				load_plugin_textdomain( RPTR_CORE_TEXT_DOMAIN, false, '/woocommerce-table-rates/languages/' );
 			}
 	    
 		}
