@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.1.7
+Version: 1.2
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
@@ -43,8 +43,11 @@ function woocommerce_tablerate_rp() {
 			$this->table_rate_option    = 'rp_wc_table_rates';
 			$this->int_table_rate_option  = 'rp_wc_int_table_rates';
 			$this->method_description   = __( 'Table rates let you define a standard rate per item, or per order.', RPTR_CORE_TEXT_DOMAIN );
+			
+			$this->rptr_loaddomain();
 
-			//add_action( 'init', array( $this, 'rptr_loaddomain', ) );
+			//add_action( 'plugins_loaded', array( $this, 'rptr_loaddomain', ) );
+			//add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_table_rates' ) );
 			add_filter( 'woocommerce_settings_api_sanitized_fields_' . $this->id, array( $this, 'save_default_costs' ) );
@@ -135,7 +138,7 @@ function woocommerce_tablerate_rp() {
 					),
 				),
 				'international' => array(
-					'title'     => __( 'Enable/Disable Interational Table', RPTR_CORE_TEXT_DOMAIN ),
+					'title'     => __( 'Enable/Disable International Table', RPTR_CORE_TEXT_DOMAIN ),
 					'type'      => 'checkbox',
 					'label'     => __( 'Enable the International shipping table rates method', RPTR_CORE_TEXT_DOMAIN ),
 					'default'   => 'no',
@@ -265,7 +268,7 @@ function woocommerce_tablerate_rp() {
 						</thead>
 						<tfoot>
 							<tr>
-								<th colspan="4"><a href="#" class="add button"><?php _e( '+ Add Rate', RPTR_CORE_TEXT_DOMAIN ); ?></a> <a href="#" class="remove button"><?php _e( 'Delete selected rates', RPTR_CORE_TEXT_DOMAIN ); ?></a></th>
+								<th colspan="4"><a href="#" class="add button" style="margin-left: 24px"><?php _e( '+ Add Rate', RPTR_CORE_TEXT_DOMAIN ); ?></a> <a href="#" class="remove button"><?php _e( 'Delete selected rates', RPTR_CORE_TEXT_DOMAIN ); ?></a></th>
 							</tr>
 						</tfoot>
 						<tbody class="table_rates">
@@ -277,9 +280,9 @@ function woocommerce_tablerate_rp() {
 									$i++;
 									echo '<tr class="table_rate">
 										<th class="check-column"><input type="checkbox" name="select" /></th>
-										<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['minO'] ) . '" name="' . esc_attr( $this->id .'_minO[' . $i . ']' ) . '" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
-										<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['maxO'] ) . '" name="' . esc_attr( $this->id .'_maxO[' . $i . ']' ) . '" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
-										<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['shippingO'] ) . '" name="' . esc_attr( $this->id .'_shippingO[' . $i . ']' ) . '" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
+										<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['minO'] ) . '" name="' . esc_attr( $this->id .'_minO[' . $i . ']' ) . '" style="width: 90%" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
+										<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['maxO'] ) . '" name="' . esc_attr( $this->id .'_maxO[' . $i . ']' ) . '" style="width: 90%" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
+										<td><input type="number" step="any" min="0" value="' . esc_attr( $rate['shippingO'] ) . '" name="' . esc_attr( $this->id .'_shippingO[' . $i . ']' ) . '" style="width: 90%" class="' . esc_attr( $this->id .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
 									</tr>';
 								}
 							}
@@ -295,9 +298,9 @@ function woocommerce_tablerate_rp() {
 								var previous = size - 1;
 								jQuery('<tr class="table_rate">\
 									<th class="check-column"><input type="checkbox" name="select" /></th>\
-									<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_minO[' + size + ']" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
-									<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_maxO[' + size + ']" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
-									<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_shippingO[' + size + ']" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+									<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_minO[' + size + ']" style="width: 90%" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+									<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_maxO[' + size + ']" style="width: 90%" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+									<td><input type="number" step="any" min="0" name="<?php echo $this->id; ?>_shippingO[' + size + ']" style="width: 90%" class="<?php echo $this->id; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
 								</tr>').appendTo('#<?php echo $this->id; ?>_table_rates table tbody');
 						
 								return false;
@@ -318,8 +321,6 @@ function woocommerce_tablerate_rp() {
 				</td>
 			</tr>
 
-
-
 			<tr valign="top">
 				<th scope="row" class="titledesc"><?php _e( 'International Rates', RPTR_CORE_TEXT_DOMAIN ); ?>:</th>
 				<td class="forminp" id="<?php echo $this->id_int; ?>_int_table_rates">
@@ -334,7 +335,7 @@ function woocommerce_tablerate_rp() {
 						</thead>
 						<tfoot>
 							<tr>
-								<th colspan="4"><a href="#" class="add button"><?php _e( '+ Add Rate', RPTR_CORE_TEXT_DOMAIN ); ?></a> <a href="#" class="remove button"><?php _e( 'Delete selected rates', RPTR_CORE_TEXT_DOMAIN ); ?></a></th>
+								<th colspan="4"><a href="#" class="add button" style="margin-left: 24px"><?php _e( '+ Add Rate', RPTR_CORE_TEXT_DOMAIN ); ?></a> <a href="#" class="remove button"><?php _e( 'Delete selected rates', RPTR_CORE_TEXT_DOMAIN ); ?></a></th>
 							</tr>
 						</tfoot>
 						<tbody class="int_table_rates">
@@ -347,9 +348,9 @@ function woocommerce_tablerate_rp() {
 
 									echo '<tr class="int_table_rate">
 										<th class="check-column"><input type="checkbox" name="select" /></th>
-										<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['minO'] ) . '" name="' . esc_attr( $this->id_int .'_minO[' . $i . ']' ) . '" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
-										<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['maxO'] ) . '" name="' . esc_attr( $this->id_int .'_maxO[' . $i . ']' ) . '" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
-										<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['shippingO'] ) . '" name="' . esc_attr( $this->id_int .'_shippingO[' . $i . ']' ) . '" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
+										<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['minO'] ) . '" name="' . esc_attr( $this->id_int .'_minO[' . $i . ']' ) . '" style="width: 90%" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
+										<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['maxO'] ) . '" name="' . esc_attr( $this->id_int .'_maxO[' . $i . ']' ) . '" style="width: 90%" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
+										<td><input type="number" step="any" min="0" value="' . esc_attr( $int_rate['shippingO'] ) . '" name="' . esc_attr( $this->id_int .'_shippingO[' . $i . ']' ) . '" style="width: 90%" class="' . esc_attr( $this->id_int .'field[' . $i . ']' ) . '" placeholder="'.__( '0.00', RPTR_CORE_TEXT_DOMAIN ).'" size="4" /></td>
 									</tr>';
 								}
 							}
@@ -366,9 +367,9 @@ function woocommerce_tablerate_rp() {
 
 								jQuery('<tr class="int_table_rate">\
 									<th class="check-column"><input type="checkbox" name="select" /></th>\
-									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_minO[' + size + ']" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
-									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_maxO[' + size + ']" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
-									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_shippingO[' + size + ']" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_minO[' + size + ']" style="width: 90%" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_maxO[' + size + ']" style="width: 90%" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_shippingO[' + size + ']" style="width: 90%" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
 									</tr>').appendTo('#<?php echo $this->id_int; ?>_int_table_rates table tbody');
 
 									return false;
@@ -458,10 +459,6 @@ function woocommerce_tablerate_rp() {
 				array_multisort($sortArray[$orderby],SORT_ASC,$table_rates);
 				
 				update_option( $this->table_rate_option, $table_rates );
-
-
-
-
 
 				$int_table_rate_minO  = array();
 				$int_table_rate_maxO  = array();
@@ -556,7 +553,7 @@ function woocommerce_tablerate_rp() {
 		 	*/
 			
 			public function rptr_loaddomain() {
-				load_plugin_textdomain( RPTR_CORE_TEXT_DOMAIN, false, '/woocommerce-table-rates/languages/' );
+				load_plugin_textdomain( 'rptr', false, dirname( plugin_basename( __FILE__ ) ) . "/languages" );
 			}
 	    
 		}

@@ -1,0 +1,125 @@
+# Copyright (C) 2013 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-table-rates\n"
+"POT-Creation-Date: 2013-09-18 03:02:51+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-12-26 22:39-0700\n"
+"Last-Translator: Ryan Pletcher <r@ryanpletcher.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: tablerates.php:38 tablerates.php:100
+msgid "Table Rate"
+msgstr "Tabla de Tarifas"
+
+#: tablerates.php:41
+msgid "Table rates let you define a standard rate per item, or per order."
+msgstr ""
+"La tabla de tarifas le permite definir una tarifa estándar por artículo o "
+"por pedido"
+
+#: tablerates.php:91
+msgid "Enable/Disable"
+msgstr "Activar / Desactiva"
+
+#: tablerates.php:93
+msgid "Enable this shipping method"
+msgstr "Habilitar esta forma de envío"
+
+#: tablerates.php:97
+msgid "Method Title"
+msgstr "Título del Metodo"
+
+#: tablerates.php:99
+msgid "This controls the title which the user sees during checkout."
+msgstr "Esto controla el título que el usuario ve durante el pago"
+
+#: tablerates.php:104
+msgid "Availability"
+msgstr "Disponibilidad"
+
+#: tablerates.php:109
+msgid "All allowed countries"
+msgstr "Todos los países permitidos"
+
+#: tablerates.php:110 tablerates.php:114
+msgid "Specific Countries"
+msgstr "Países Específicos"
+
+#: tablerates.php:122
+msgid "Tax Status"
+msgstr "Sujeto a Impuesto"
+
+#: tablerates.php:126
+msgid "Taxable"
+msgstr "Imponible"
+
+#: tablerates.php:127
+msgid "None"
+msgstr "Ninguno"
+
+#: tablerates.php:131
+msgid "Enable/Disable International Table"
+msgstr "Activar / Desactivar la Tabla Internacional"
+
+#: tablerates.php:133
+msgid "Enable the International shipping table rates method"
+msgstr "Habilitar el método internacional"
+
+#: tablerates.php:137
+msgid "Local Countries"
+msgstr "Países Locales"
+
+#: tablerates.php:235
+msgid "Domestic Rates"
+msgstr "Precios domésticos"
+
+#: tablerates.php:241 tablerates.php:310
+msgid "Min Price"
+msgstr "Precio Mín"
+
+#: tablerates.php:241 tablerates.php:310
+msgid "Min price for this shipping rate."
+msgstr "Precio mínimo para este tipo de envio"
+
+#: tablerates.php:242 tablerates.php:311
+msgid "Max Price"
+msgstr "Precio Max"
+
+#: tablerates.php:242 tablerates.php:311
+msgid "Max price for this shipping rate."
+msgstr "Precio maximo para este tipo de envio"
+
+#: tablerates.php:243 tablerates.php:312
+msgid "Shipping Fee"
+msgstr "Tarifa de envío"
+
+#: tablerates.php:243 tablerates.php:312
+msgid "Shipping price for this price range."
+msgstr "Precio de envío para este rango de precío"
+
+#: tablerates.php:248 tablerates.php:317
+msgid "+ Add Rate"
+msgstr "+ Agregar Tarifa"
+
+#: tablerates.php:248 tablerates.php:317
+msgid "Delete selected rates"
+msgstr "Eliminar tarifas seleccionadas"
+
+#: tablerates.php:260 tablerates.php:261 tablerates.php:262 tablerates.php:330
+#: tablerates.php:331 tablerates.php:332
+msgid "0.00"
+msgstr "0.00"
+
+#: tablerates.php:288 tablerates.php:359
+msgid "Delete the selected rates?"
+msgstr "Eliminar tarifas seleccionadas"
+
+#: tablerates.php:304
+msgid "International Rates"
+msgstr "Tarifas Internacionales"

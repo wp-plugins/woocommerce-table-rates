@@ -3,7 +3,7 @@ Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.1.7
+Stable tag: 1.2
 Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
 
@@ -12,6 +12,11 @@ Table Rates for WooCommerce allows you to setup a number of different price poin
 == Description ==
 
 This plugin will allow you to create two tables of shipping rates ( one for domestic orders and one for international ).  These rates are based on the total order price in your cart.  You can specify which countries are local and which countries you want to be able to use this shipping method. 
+
+= A big thanks to our Translators =
+* Swedish: Emil @ <a href="http://profiles.wordpress.org/mr3k/" target="_blank">mr3k</a>
+* French: Ben @ <a href="http://bpepermans.com" target="_blank">bpepermans.com</a>
+* Spanish: Irving R
 
 If you have an interest in translating this plugin please let me know.
 
@@ -32,6 +37,13 @@ Working on adding addition languages (Swedish, Spanish and German)
 None at this time
 
 == Changelog ==
+
+= 1.2 =
+* ADD: Swedish Translation
+* ADD: French Translation
+* ADD: Spanish Translation
+* FIX: Updated some CSS issues with the new Wordpress version
+* FIX: Corrected a spelling error
 
 = 1.1.7 =
 * FIX: Fixing issue to check for the minimum value you can use for this shipping method
@@ -59,9 +71,9 @@ None at this time
 * FIX: Spelling Errors.
 
 = 1.1 =
-* NEW: Sorts each table seperately in order of smallest to largest based off of minium cart total.
+* NEW: Sorts each table separately in order of smallest to largest based off of minimum cart total.
 
-* NEW: Swap Min and Max ammounts if the Max value is less than the Min Value.
+* NEW: Swap Min and Max amounts if the Max value is less than the Min Value.
 
 = 1.0 =
 * Initial Release
