@@ -3,7 +3,7 @@ Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.2
+Stable tag: 1.2.1
 Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
 
@@ -30,13 +30,14 @@ If you have an interest in translating this plugin please let me know.
 6. Check the Enable/Disable Checkbox.
 7. Enter the settings that you would like you to use
 
-== Future Plans ==
-Working on adding addition languages (Swedish, Spanish and German)
-
 == Frequently Asked Questions ==
 None at this time
 
 == Changelog ==
+= 1.2.1 =
+* FIX: Updated the way that the shipping caluclation works so that it works with different types of products.
+* FIX: Formatted Code
+* ADD: Ability to determine if the shipping caluclation will include the discounts or not.
 
 = 1.2 =
 * ADD: Swedish Translation
