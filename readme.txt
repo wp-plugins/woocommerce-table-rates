@@ -3,7 +3,7 @@ Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
 
@@ -12,6 +12,8 @@ Table Rates for WooCommerce allows you to setup a number of different price poin
 == Description ==
 
 This plugin will allow you to create two tables of shipping rates ( one for domestic orders and one for international ).  These rates are based on the total order price in your cart.  You can specify which countries are local and which countries you want to be able to use this shipping method. 
+
+I have also created a premium version of this plugin that ill allow you to choose any number of countries and allows a greater level of customization.  Find it at <a href="https://wp-ronin.com/downloads/woocommerce-premium-table-rate-shipping/">wp-ronin.com/downloads/woocommerce-premium-table-rate-shipping/</a>
 
 = A big thanks to our Translators =
 * Swedish: Emil @ <a href="http://profiles.wordpress.org/mr3k/" target="_blank">mr3k</a>
@@ -34,6 +36,11 @@ If you have an interest in translating this plugin please let me know.
 None at this time
 
 == Changelog ==
+= 1.2.2 =
+* FIX: Error when discount is not left empty
+* FIX: Fix multi sort error when saving table rates
+* ADD: Ability to choose how to handle values over your max value
+
 = 1.2.1 =
 * FIX: Updated the way that the shipping caluclation works so that it works with different types of products.
 * FIX: Formatted Code

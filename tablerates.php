@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.2.1
+Version: 1.2.2
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
@@ -48,7 +48,7 @@ function woocommerce_tablerate_rp() {
 
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_table_rates' ) );
-			add_filter( 'woocommerce_settings_api_sanitized_fields_' . $this->id, array( $this, 'save_default_costs' ) );
+			//add_filter( 'woocommerce_settings_api_sanitized_fields_' . $this->id );
 
 			$this->init();
 		}
@@ -72,6 +72,7 @@ function woocommerce_tablerate_rp() {
 			$this->countries    = $this->get_option( 'countries' );
 			$this->local_countries  = $this->get_option( 'local_countries' );
 			$this->apply_when 	= $this->get_option( 'apply_when' );
+			$this->greatMax 	= $this->get_option( 'greatMax' );
 			$this->type       = $this->get_option( 'type' );
 			$this->tax_status   = $this->get_option( 'tax_status' );
 			$this->region     = $this->get_option( 'region' );
@@ -137,6 +138,18 @@ function woocommerce_tablerate_rp() {
 					'css'       => 'width: 450px;',
 					'default'    => '',
 					'options'    => $woocommerce->countries->countries,
+				),
+				'greatMax' => array(
+					'title'     => __( 'Greater than Max', RPTR_CORE_TEXT_DOMAIN ),
+					'description'  => __( 'This will determine how to handle values over the largest max value in the tables.', RPTR_CORE_TEXT_DOMAIN ),
+					'desc_tip'     => true,
+					'type'      => 'select',
+					'default'   => 'maxship',
+					'options'   => array(
+						'maxship'    => __( 'Use Max Shipping', RPTR_CORE_TEXT_DOMAIN ),
+						'ignore' 	=> __( 'Ignore Value', RPTR_CORE_TEXT_DOMAIN ),
+						
+					),
 				),
 				'tax_status' => array(
 					'title'     => __( 'Tax Status', RPTR_CORE_TEXT_DOMAIN ),
@@ -239,41 +252,49 @@ function woocommerce_tablerate_rp() {
 				}
 			}
 			
-			if( $this->get_option( 'apply_when' ) == "after")
+			if( $this->get_option( 'apply_when' ) == "after"  && !empty($discount_total) )
 				$shipping_cost = $totalPrice + $discount_total;
 
 			$price = (float) $shipping_cost; //Sets the Price that we will calculate the shipping
 			$shipping_costs = -1;
 			$theFirst = 0;
 
-			
+			$greatMax = $this->get_option( 'greatMax' );
+
 			if ( in_array( $myCountry, $localCountry ) || ( $this->get_option( 'international' ) == "no" ) ) {
+
 				foreach ( $shipping_rates as $rates ) {
 					if ( ( (float) $price < (float) $rates['minO'] )  && ( $theFirst == 0 ) ) {
 						$theFirst = 1;
 						break;
 					}
 
-					$shipping_costs = (float) $rates['shippingO'];
-					if ( ( (float) $price >= (float) $rates['minO']) && ( (float) $price <= (float) $rates['maxO'] ) )
+					if ( ( (float) $price >= (float) $rates['minO']) && ( (float) $price <= (float) $rates['maxO'] ) ) {
+						$shipping_costs = (float) $rates['shippingO'];
 						break;
-
-					
-
-				}
-			} else if ( !in_array( $myCountry, $localCountry ) ) {
-					foreach ( $int_shipping_rates as $int_rates ) {
-						if ( ( (float) $price < (float) $int_rates[0] )  && ( $theFirst == 0 ) ) {
-							$theFirst = 1;
-							break;
-						}
-
-						$shipping_costs = (float) $int_rates['shippingO'];
-						if ( (float) $price >= (float) $int_rates['minO'] && (float) $price <= (float) $int_rates['maxO'] )
-							break;
-
 					}
+					if( $greatMax == 'maxship' ) 
+						$shipping_costs = (float) $rates['shippingO'];
 				}
+
+			} else if ( !in_array( $myCountry, $localCountry ) ) {
+				foreach ( $int_shipping_rates as $int_rates ) {
+					if ( ( (float) $price < (float) $int_rates[0] )  && ( $theFirst == 0 ) ) {
+						$theFirst = 1;
+						break;
+					}
+
+					if ( (float) $price >= (float) $int_rates['minO'] && (float) $price <= (float) $int_rates['maxO'] ) {
+						$shipping_costs = (float) $int_rates['shippingO'];
+						break;
+					}
+					if( $greatMax == 'maxship' )
+						$shipping_costs = (float) $rates['shippingO'];
+
+				}
+
+
+			}
 
 			if ( $shipping_costs <> -1 ) {
 				$rate = array(
@@ -422,7 +443,7 @@ function woocommerce_tablerate_rp() {
 								jQuery('<tr class="int_table_rate">\
 									<th class="check-column"><input type="checkbox" name="select" /></th>\
 									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_minO[' + size + ']" style="width: 90%" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
-									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_maxO[' + size + ']" style="width: 90%" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
+									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_maxO[' + size + ']" style="width: 90%" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="" size="4" /></td>\
 									<td><input type="number" step="any" min="0" name="<?php echo $this->id_int; ?>_shippingO[' + size + ']" style="width: 90%" class="<?php echo $this->id_int; ?>field[' + size + ']" placeholder="0.00" size="4" /></td>\
 									</tr>').appendTo('#<?php echo $this->id_int; ?>_int_table_rates table tbody');
 
@@ -510,7 +531,8 @@ function woocommerce_tablerate_rp() {
 				}
 			}
 
-			array_multisort( $sortArray[$orderby], SORT_ASC, $table_rates );
+			if( !empty($sortArray) )
+				array_multisort( $sortArray[$orderby], SORT_ASC, $table_rates );
 
 			update_option( $this->table_rate_option, $table_rates );
 
@@ -562,7 +584,8 @@ function woocommerce_tablerate_rp() {
 				}
 			}
 
-			array_multisort( $sortIntArray[$orderby], SORT_ASC, $int_table_rates );
+			if( !empty($sortintArray) )
+				array_multisort( $sortIntArray[$orderby], SORT_ASC, $int_table_rates );
 
 			update_option( $this->int_table_rate_option, $int_table_rates );
 
