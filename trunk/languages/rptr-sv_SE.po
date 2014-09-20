@@ -1,0 +1,166 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Table Rates\n"
+"POT-Creation-Date: 2014-05-12 16:49-0700\n"
+"PO-Revision-Date: 2014-05-12 16:52-0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: tablerates.php:42 tablerates.php:110
+msgid "Table Rate"
+msgstr "Avgiftstabell"
+
+#: tablerates.php:45
+msgid "Table rates let you define a standard rate per item, or per order."
+msgstr ""
+"Avgiftstabellen låter dig definerar en standard avgift per product eller per "
+"order."
+
+#: tablerates.php:101
+msgid "Enable/Disable"
+msgstr "Aktivera/Avaktivera"
+
+#: tablerates.php:103
+msgid "Enable this shipping method"
+msgstr "Aktivera detta fraktalternativ"
+
+#: tablerates.php:107
+msgid "Method Title"
+msgstr "Metodens titel"
+
+#: tablerates.php:109
+msgid "This controls the title which the user sees during checkout."
+msgstr "Den här är titeln som kunden ser vid betalning"
+
+#: tablerates.php:114
+msgid "Calculate Discounts?"
+msgstr ""
+
+#: tablerates.php:117
+msgid ""
+"This controls if the shipping is calculated before any applied discounts or "
+"after they are applied."
+msgstr ""
+
+#: tablerates.php:120
+msgid "Before Discount"
+msgstr ""
+
+#: tablerates.php:121
+msgid "After Discount"
+msgstr ""
+
+#: tablerates.php:125
+msgid "Availability"
+msgstr "Tillgänglighet"
+
+#: tablerates.php:130
+msgid "All allowed countries"
+msgstr "Alla tillåtna länder"
+
+#: tablerates.php:131 tablerates.php:135
+msgid "Specific Countries"
+msgstr "Specifika länder"
+
+#: tablerates.php:143
+msgid "Greater than Max"
+msgstr ""
+
+#: tablerates.php:144
+msgid ""
+"This will determine how to handle values over the largest max value in the "
+"tables."
+msgstr ""
+
+#: tablerates.php:149
+msgid "Use Max Shipping"
+msgstr ""
+
+#: tablerates.php:150
+msgid "Ignore Value"
+msgstr ""
+
+#: tablerates.php:155
+msgid "Tax Status"
+msgstr "Status för skatt"
+
+#: tablerates.php:159
+msgid "Taxable"
+msgstr "Skattbart"
+
+#: tablerates.php:160
+msgid "None"
+msgstr "Ingen"
+
+#: tablerates.php:164
+msgid "Enable/Disable International Table"
+msgstr "Aktivera/Avaktivera internationell avgiftstabell"
+
+#: tablerates.php:166
+msgid "Enable the International shipping table rates method"
+msgstr "Aktivera internationell fraktsats "
+
+#: tablerates.php:170
+msgid "Local Countries"
+msgstr "Inrikes land"
+
+#: tablerates.php:333
+msgid "Domestic Rates"
+msgstr "Avgiftstabell inrikes"
+
+#: tablerates.php:339 tablerates.php:406
+msgid "Min Price"
+msgstr "Min. Pris"
+
+#: tablerates.php:339 tablerates.php:406
+msgid "Min price for this shipping rate."
+msgstr "Minsta kostnad för denna avgiftstabell."
+
+#: tablerates.php:340 tablerates.php:407
+msgid "Max Price"
+msgstr "Max pris"
+
+#: tablerates.php:340 tablerates.php:407
+msgid "Max price for this shipping rate."
+msgstr "Max pris för denna avgiftstabell"
+
+#: tablerates.php:341 tablerates.php:408
+msgid "Shipping Fee"
+msgstr "Fraktavgift"
+
+#: tablerates.php:341 tablerates.php:408
+msgid "Shipping price for this price range."
+msgstr "Fraktavgift för detta prisspann"
+
+#: tablerates.php:346 tablerates.php:413
+msgid "+ Add Rate"
+msgstr "Lägg till rad"
+
+#: tablerates.php:346 tablerates.php:413
+msgid "Delete selected rates"
+msgstr "Ta bort valt spann"
+
+#: tablerates.php:358 tablerates.php:359 tablerates.php:360 tablerates.php:426
+#: tablerates.php:427 tablerates.php:428
+msgid "0.00"
+msgstr "0.00"
+
+#: tablerates.php:386 tablerates.php:455
+msgid "Delete the selected rates?"
+msgstr "Ta bort de valda spannen?"
+
+#: tablerates.php:400
+msgid "International Rates"
+msgstr "Avgiftstabell internationellt"
