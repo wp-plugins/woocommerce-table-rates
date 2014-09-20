@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Table Rates
 Plugin URI: http://ryanpletcher.com
 Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
-Version: 1.2.2
+Version: 1.2.3
 Author: Ryan Pletcher
 Author URI: http://ryanpletcher.com
 License: GPL2
@@ -48,7 +48,8 @@ function woocommerce_tablerate_rp() {
 
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
 			add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_table_rates' ) );
-			//add_filter( 'woocommerce_settings_api_sanitized_fields_' . $this->id );
+			
+
 
 			$this->init();
 		}
@@ -84,6 +85,10 @@ function woocommerce_tablerate_rp() {
 			// Load Table rates
 			$this->get_table_rates();
 
+			$this->hide_shipping 	= $this->get_option( 'rptr_hide_other_shipping_when_available' );
+			
+			// Hide shipping methods
+			add_filter( 'woocommerce_available_shipping_methods', array( $this, 'hide_all_shipping_when_this_is_available' ) );
 
 		}
 
@@ -174,6 +179,14 @@ function woocommerce_tablerate_rp() {
 					'default'   => '',
 					'options'   => $woocommerce->countries->countries,
 				),
+
+				'rptr_hide_other_shipping_when_available' => array(
+					'title' 		=> __( 'Hide other shipping', 'wafs' ),
+					'type' 			=> 'checkbox',
+					'label' 		=> __( 'Hide other shipping methods when free shipping is available', 'wafs' ),
+					'default' 		=> 'no'
+				),
+
 				'domestic_shipping_table' => array(
 					'type'      => 'shipping_table'
 				),
@@ -621,6 +634,32 @@ function woocommerce_tablerate_rp() {
 		function get_table_rates() {
 			$this->table_rates = array_filter( (array) get_option( $this->table_rate_option ) );
 			$this->int_table_rates = array_filter( (array) get_option( $this->int_table_rate_option ) );
+		}
+
+		/**
+		 * Hide shipping.
+		 *
+		 * Hide Shipping methods when regular or advanced free shipping is available
+		 *
+		 * @param array $available_methods
+		 * @return array
+		 */
+		public function hide_all_shipping_when_this_is_available( $available_methods ) {
+
+			//if ( 'no' == $this->hide_shipping ) return $available_methods;
+			
+		 	if ( isset( $available_methods['rp_table_rate'] ) ) :
+				return array( $available_methods['rp_table_rate'] );
+		 		
+		 	elseif ( isset( $available_methods['free_shipping'] ) ) :
+		 		return array( $available_methods['free_shipping'] );
+		 		
+		 	else :
+		 		return $available_methods;
+		 		
+		 	endif;
+		 	
+		  	
 		}
 
 		/**

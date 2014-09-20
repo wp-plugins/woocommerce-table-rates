@@ -2,8 +2,8 @@
 Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
-Tested up to: 3.8
-Stable tag: 1.2.2
+Tested up to: 4.0
+Stable tag: 1.2.3
 Donate link: https://ryanpletcher.com/donate/
 License: GPLv2 or later
 
@@ -36,6 +36,9 @@ If you have an interest in translating this plugin please let me know.
 None at this time
 
 == Changelog ==
+= 1.2.3 =
+* UPDATE: Changed Stable Tab
+
 = 1.2.2 =
 * FIX: Error when discount is not left empty
 * FIX: Fix multi sort error when saving table rates
