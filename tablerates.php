@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce - Table Rates
  * Plugin URI: http://wp-ronin.com
  * Description: Plugin for fixed rate shipping depending upon the cart amount in WooCommerce.
- * Version: 1.3.0
+ * Version: 1.3.1
  * Author: WP Ronin
  * Author URI: http://ryanpletcher.com
  * License: GPL2
@@ -66,7 +66,7 @@ if( !class_exists( 'WPR_Table_Rate' ) ) {
          * @return      void
          */
         private function setup_constants() {
-            define( 'WPTR_SHIPPING_VER', '1.3.0' );  // Plugin version
+            define( 'WPTR_SHIPPING_VER', '1.3.1' );  // Plugin version
             
             define( 'WPTR_SHIPPING_DIR', plugin_dir_path( __FILE__ ) );  // Plugin path
 
@@ -235,19 +235,4 @@ function WPR_Table_Rate_load() {
     return WPR_Table_Rate::instance();
 
 }
-add_action( 'plugins_loaded', 'WPR_Table_Rate_load' );
-
-
-/**
- * The activation hook is called outside of the singleton because WordPress doesn't
- * register the call from within the class, since we are preferring the plugins_loaded
- * hook for compatibility, we also can't reference a function inside the plugin class
- * for the activation function. If you need an activation function, put it here.
- *
- * @since       1.0.0
- * @return      void
- */
-function wpr_table_rateactivation() {
-    /* Activation functions here */
-}
-register_activation_hook( __FILE__, 'wpr_table_rateactivation' );
+add_action( 'woocommerce_shipping_init', 'WPR_Table_Rate_load' );

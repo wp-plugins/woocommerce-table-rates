@@ -3,7 +3,7 @@ Contributors: rpletcher
 Tags: woocommerce, fixed rates, shipping, domestic shipping, international shipping, table rate, cart total
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 Donate link: https://wp-ronin.com/donate/
 License: GPLv2 or later
 
@@ -36,6 +36,10 @@ If you have an interest in translating this plugin please let me know.
 None at this time
 
 == Changelog ==
+= 1.3.1 =
+* UPDATE: Hook into Woocommerce
+* UPDATE: Sorting fix
+
 = 1.3.0 =
 * UPDATE: File Structure updated to singleton structure
 * UPDATE: Table Creation and layout
