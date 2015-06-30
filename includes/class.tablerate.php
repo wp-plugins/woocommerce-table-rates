@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
 
-if( class_exists('WC_Shipping_Method' ) ) {
+
 
 	class rp_tablerates extends WC_Shipping_Method {
 
@@ -52,20 +52,20 @@ if( class_exists('WC_Shipping_Method' ) ) {
 			$this->init_settings();
 
 			// Define user set variables
-			$this->title      		= $this->get_option( 'title' );
-			$this->int_title    	= $this->get_option( 'International' );
-			$this->availability  	= $this->get_option( 'availability' );
-			$this->countries    	= $this->get_option( 'countries' );
+			$this->title      = $this->get_option( 'title' );
+			$this->int_title    = $this->get_option( 'International' );
+			$this->availability   = $this->get_option( 'availability' );
+			$this->countries    = $this->get_option( 'countries' );
 			$this->local_countries  = $this->get_option( 'local_countries' );
-			$this->apply_when 		= $this->get_option( 'apply_when' );
-			$this->greatMax 		= $this->get_option( 'greatMax' );
-			$this->type       		= $this->get_option( 'type' );
-			$this->tax_status   	= $this->get_option( 'tax_status' );
-			$this->region     		= $this->get_option( 'region' );
-			$this->min_order    	= $this->get_option( 'min_order' );
-			$this->max_order    	= $this->get_option( 'max_order' );
-			$this->shipping_rate  	= $this->get_option( 'shipping_rate' );
-			$this->international  	= $this->get_option( 'international' );
+			$this->apply_when 	= $this->get_option( 'apply_when' );
+			$this->greatMax 	= $this->get_option( 'greatMax' );
+			$this->type       = $this->get_option( 'type' );
+			$this->tax_status   = $this->get_option( 'tax_status' );
+			$this->region     = $this->get_option( 'region' );
+			$this->min_order    = $this->get_option( 'min_order' );
+			$this->max_order    = $this->get_option( 'max_order' );
+			$this->shipping_rate  = $this->get_option( 'shipping_rate' );
+			$this->international  = $this->get_option( 'international' );
 
 			// Load Table rates
 			$this->get_table_rates();
@@ -84,84 +84,84 @@ if( class_exists('WC_Shipping_Method' ) ) {
 
 			$this->form_fields = array(
 				'enabled' => array(
-					'title'      	=> __( 'Enable/Disable', 'rptr' ),
-					'type'       	=> 'checkbox',
-					'label'      	=> __( 'Enable this shipping method', 'rptr' ),
-					'default'    	=> 'no',
+					'title'      => __( 'Enable/Disable', 'rptr' ),
+					'type'       => 'checkbox',
+					'label'      => __( 'Enable this shipping method', 'rptr' ),
+					'default'    => 'no',
 				),
 				'title' => array(
-					'title'      	=> __( 'Method Title', 'rptr' ),
-					'type'       	=> 'text',
-					'description'  	=> __( 'This controls the title which the user sees during checkout.', 'rptr' ),
-					'default'    	=> __( 'Table Rate', 'rptr' ),
-					'desc_tip'     	=> true
+					'title'      => __( 'Method Title', 'rptr' ),
+					'type'       => 'text',
+					'description'  => __( 'This controls the title which the user sees during checkout.', 'rptr' ),
+					'default'    => __( 'Table Rate', 'rptr' ),
+					'desc_tip'     => true
 				),
 				'apply_when' => array(
-					'title'     	=> __( 'Calculate Discounts?', 'rptr' ),
-					'type'      	=> 'select',
-					'default'   	=> 'before',
-					'description'  	=> __( 'This controls if the shipping is calculated before any applied discounts or after they are applied.', 'rptr' ),
-					'desc_tip'     	=> true,
+					'title'     => __( 'Calculate Discounts?', 'rptr' ),
+					'type'      => 'select',
+					'default'   => 'before',
+					'description'  => __( 'This controls if the shipping is calculated before any applied discounts or after they are applied.', 'rptr' ),
+					'desc_tip'     => true,
 					'options'   => array(
-						'before' 	=> __( 'Before Discount', 'rptr' ),
-						'after'    	=> __( 'After Discount', 'rptr' ),
+						'before' => __( 'Before Discount', 'rptr' ),
+						'after'    => __( 'After Discount', 'rptr' ),
 					),
 				),
 				'availability' => array(
-					'title'      	=> __( 'Availability', 'rptr' ),
-					'type'       	=> 'select',
-					'default'    	=> 'all',
-					'class'      	=>	 'availability',
+					'title'      => __( 'Availability', 'rptr' ),
+					'type'       => 'select',
+					'default'    => 'all',
+					'class'      => 'availability',
 					'options'    => array(
-						'all'    	=> __( 'All allowed countries', 'rptr' ),
+						'all'    => __( 'All allowed countries', 'rptr' ),
 						'specific'  => __( 'Specific Countries', 'rptr' ),
 					),
 				),
 				'countries' => array(
-					'title'      	=> __( 'Specific Countries', 'rptr' ),
-					'type'       	=> 'multiselect',
-					'class'      	=> 'chosen_select',
-					'css'       	=> 'width: 450px;',
-					'default'    	=> '',
-					'options'    	=> $woocommerce->countries->countries,
+					'title'      => __( 'Specific Countries', 'rptr' ),
+					'type'       => 'multiselect',
+					'class'      => 'chosen_select',
+					'css'       => 'width: 450px;',
+					'default'    => '',
+					'options'    => $woocommerce->countries->countries,
 				),
 				'greatMax' => array(
-					'title'     	=> __( 'Greater than Max', 'rptr' ),
-					'description'  	=> __( 'This will determine how to handle values over the largest max value in the tables.', 'rptr' ),
-					'desc_tip'     	=> true,
-					'type'      	=> 'select',
-					'default'   	=> 'maxship',
+					'title'     => __( 'Greater than Max', 'rptr' ),
+					'description'  => __( 'This will determine how to handle values over the largest max value in the tables.', 'rptr' ),
+					'desc_tip'     => true,
+					'type'      => 'select',
+					'default'   => 'maxship',
 					'options'   => array(
-						'maxship'   => __( 'Use Max Shipping', 'rptr' ),
+						'maxship'    => __( 'Use Max Shipping', 'rptr' ),
 						'ignore' 	=> __( 'Ignore Value', 'rptr' ),
 						
 					),
 				),
 				'tax_status' => array(
-					'title'     	=> __( 'Tax Status', 'rptr' ),
-					'type'     	 	=> 'select',
-					'default'   	=> 'taxable',
+					'title'     => __( 'Tax Status', 'rptr' ),
+					'type'      => 'select',
+					'default'   => 'taxable',
 					'options'   => array(
-						'taxable' 	=> __( 'Taxable', 'rptr' ),
-						'none'    	=> __( 'None', 'rptr' ),
+						'taxable' => __( 'Taxable', 'rptr' ),
+						'none'    => __( 'None', 'rptr' ),
 					),
 				),
 				'international' => array(
-					'title'     	=> __( 'Enable/Disable International Table', 'rptr' ),
-					'type'      	=> 'checkbox',
-					'label'     	=> __( 'Enable the International shipping table rates method', 'rptr' ),
-					'default'   	=> 'no',
+					'title'     => __( 'Enable/Disable International Table', 'rptr' ),
+					'type'      => 'checkbox',
+					'label'     => __( 'Enable the International shipping table rates method', 'rptr' ),
+					'default'   => 'no',
 				),
 				'local_countries' => array(
-					'title'     	=> __( 'Local Countries', 'rptr' ),
-					'type'      	=> 'multiselect',
-					'class'    	 	=> 'chosen_select',
-					'css'     		=> 'width: 450px;',
-					'default'   	=> '',
-					'options'   	=> WC()->countries->countries,
+					'title'     => __( 'Local Countries', 'rptr' ),
+					'type'      => 'multiselect',
+					'class'     => 'chosen_select',
+					'css'     => 'width: 450px;',
+					'default'   => '',
+					'options'   => WC()->countries->countries,
 				),
 				'domestic_shipping_table' => array(
-					'type'     	 	=> 'shipping_table'
+					'type'      => 'shipping_table'
 				),
 			);
 		}
@@ -608,4 +608,3 @@ if( class_exists('WC_Shipping_Method' ) ) {
 		}
 
 	}
-}

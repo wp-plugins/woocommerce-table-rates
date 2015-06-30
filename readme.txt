@@ -36,9 +36,8 @@ If you have an interest in translating this plugin please let me know.
 None at this time
 
 == Changelog ==
-= 1.3.1 =
-* UPDATE: Hook into Woocommerce
-* UPDATE: Sorting fix
+= 1.4.0 =
+* FIX: Issue with scripts not loading in admin page
 
 = 1.3.0 =
 * UPDATE: File Structure updated to singleton structure
